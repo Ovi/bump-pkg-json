@@ -1,0 +1,22 @@
+{
+  "name": "bump-pkg-json",
+  "version": "0.1.2",
+  "description": "A command-line tool to increment or set the version in package.json.",
+  "bin": {
+    "bump-pkg-json": "./bump-pkg-json.js"
+  },
+  "author": "Muhammad Ovi <contact@muhammadovi.com>",
+  "license": "ISC",
+  "keywords": [
+    "package",
+    "bump",
+    "version",
+    "increment",
+    "update"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ovi/bump-pkg-json.git"
+  },
+  "homepage": "https://github.com/ovi/bump-pkg-json#readme"
+}
