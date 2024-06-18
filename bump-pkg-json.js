@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const fs = require('fs');
+const os = require('os');
 
 const packageJson = JSON.parse(fs.readFileSync('package.json', 'utf8'));
 
@@ -9,7 +10,7 @@ if (!packageJson.version) {
   process.exit(1);
 }
 
-let bumpType = process.argv[2] || 'PATCH';
+const bumpType = process.argv[2] || 'PATCH';
 
 // Check if the provided argument is a valid version string
 const versionRegex = /^\d+\.\d+\.\d+$/;
@@ -17,10 +18,9 @@ if (versionRegex.test(bumpType)) {
   packageJson.version = bumpType;
   console.log(`Version set to ${bumpType}`);
 } else {
-  bumpType = bumpType.toUpperCase();
   let [major, minor, patch] = packageJson.version.split('.');
 
-  switch (bumpType) {
+  switch (bumpType.toUpperCase()) {
     case 'MINOR':
       minor = parseInt(minor) + 1;
       patch = 0;
@@ -42,4 +42,4 @@ if (versionRegex.test(bumpType)) {
   console.log(`Version bumped to ${packageJson.version}`);
 }
 
-fs.writeFileSync('package.json', JSON.stringify(packageJson, null, 2), 'utf8');
+fs.writeFileSync('package.json', `${JSON.stringify(packageJson, null, 2)}${os.EOL}`, 'utf8');
